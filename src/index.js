@@ -12,12 +12,14 @@ function clearFields() {
 
 $(document).ready(function() {
   $('#enterSearch').click(function() {
-    const name = $('#searchKey').val();
+    const currency = $('#searchKey').val();
     clearFields();
-    let promise = CharService.getChar(name);
+    let promise = CharService.getChar(currency);
     promise.then(function(response) {
       const body = JSON.parse(response);
-      $('.showImages').text(`${body.results[0].name}`);
+      $('.showImages').text(`Name: ${body[0].name}`);
+      $('.currentRank').text(`Rank: ${body[0].rank}`);
+      $('.price').text(`Price: ${body[0].price} `);
       //.text or ????
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error}`);

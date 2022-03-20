@@ -1,9 +1,9 @@
 //Business Logic
 export default class CharService {
-  static getChar(name) {
+  static getChar(currency) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://www.giantbomb.com/api/search/?api_key=a45aa29cb87b8c4041a39249ef893c59643d041c&format=json&query=${name}&resources=game`;
+      const url = `https://api.nomics.com/v1/currencies/ticker?key=${process.env.API_KEY}&ids=${currency}&interval=1d,30d&per-page=100&page=1`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
